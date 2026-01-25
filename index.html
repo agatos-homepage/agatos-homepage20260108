@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <!-- ビューポートの設定（スマホ対応の必須設定） -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO: 検索結果に表示されるタイトル -->
@@ -10,7 +11,7 @@
     <!-- SEO: 検索結果に表示される説明文 -->
     <meta name="description" content="株式会社アガトスは埼玉県草加市・八潮市を拠点とするプラスチック製品製造会社です。紙巻器、ペーパーホルダー、鏡、シューキーパーなどの高品質なプラスチック製品を「品質第一」でお届けします。">
     
-    <!-- SEO: 正規化URL (本番ドメインに修正) -->
+    <!-- SEO: 正規化URL -->
     <link rel="canonical" href="https://www.agathos-inc.jp/">
 
     <!-- SNSシェア時の設定 (OGP) -->
@@ -84,6 +85,41 @@
         .phrase {
             display: inline-block;
         }
+
+        /* 3. CSSに「スマホ専用のルール」を追加・強化 */
+        /* 横幅が768px以下（主にスマホ）の時に適用されるルール */
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            /* 【追加】会社概要のテーブルをスマホで見やすく「縦並び」にする設定 */
+            /* これにより、項目名（左）と内容（右）が上下に並び、横幅をフルに使えます */
+            #company table, #company tbody, #company tr, #company th, #company td {
+                display: block;
+                width: 100%;
+            }
+            #company th {
+                padding-bottom: 4px; /* 見出しの下を少し空ける */
+                padding-left: 0;
+                padding-right: 0;
+                border: none;       /* 不要な線を消す */
+            }
+            #company td {
+                padding-top: 4px;    /* 内容の上を少し空ける */
+                padding-left: 0;     /* 左のパディングをリセット */
+                padding-right: 0;
+                border-bottom: 1px solid #e5e7eb; /* 区切り線を入れる */
+                margin-bottom: 16px; /* 次の項目との間隔 */
+            }
+            #company tr:last-child td {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -121,9 +157,10 @@
 
                 <div class="inline-block text-left max-w-3.5xl">
                     <p class="text-base md:text-xl leading-relaxed text-gray-800 space-y-2">
-                        <span class="phrase">いつも感謝の気持ちを持つ。</span><br>
-                        <span class="phrase">「アガトス」はギリシャ語の「善い」「立派な」という意味があり、</span><br>
-                        <span class="phrase">当社も道徳的・人格的に「善良な」又能力的に「優秀な」との意味のごとくを目指したい。</span><br>
+                        <!-- スマホでは<br>を無効化し、自然な改行に任せます -->
+                        <span class="phrase">いつも感謝の気持ちを持つ。</span><br class="hidden md:block">
+                        <span class="phrase">「アガトス」はギリシャ語の「善い」「立派な」という意味があり、</span><br class="hidden md:block">
+                        <span class="phrase">当社も道徳的・人格的に「善良な」又能力的に「優秀な」との意味のごとくを目指したい。</span><br class="hidden md:block">
                         <span class="phrase">この二つの思いを込めて株式会社アガトスという社名に決定しました。</span>
                     </p>
                 </div>
@@ -131,7 +168,7 @@
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto py-12 px-4 md:px-6">
+    <main class="max-w-5xl mx-auto py-12 px-5 md:px-6">
         
         <!-- 会社概要セクション -->
         <section id="company" class="bg-[#f4f1ea] rounded-[40px] p-6 md:p-12 mb-24 overflow-hidden">
@@ -141,7 +178,7 @@
                 <img src="https://lh3.googleusercontent.com/d/1KiQ95SEDs_9MTwzel6IHF_S-EV2xLOHk" alt="株式会社アガトス 外観" class="w-full h-auto object-cover max-h-[400px]">
             </div>
 
-            <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+            <div class="bg-white rounded-2xl shadow-sm overflow-hidden p-4 md:p-0">
                 <table class="w-full text-left border-collapse">
                     <tbody class="divide-y divide-gray-100">
                         <tr>
@@ -151,37 +188,38 @@
                         <tr>
                             <th class="py-6 px-4 md:px-10 align-top font-bold text-base md:text-xl text-[#3d5a3e] whitespace-nowrap">所在地</th>
                             <td class="py-6 px-4 md:px-10 text-gray-600 text-base md:text-xl leading-relaxed">
-                                <div class="flex flex-col gap-6">
+                                <div class="flex flex-col gap-8">
                                     <!-- 本社情報 -->
                                     <div class="flex flex-col gap-1">
-                                        <div class="flex items-start">
-                                            <span class="font-normal text-gray-700 whitespace-nowrap w-[4em] md:w-[6em] shrink-0">本社</span>
+                                        <!-- スマホでは縦並び、PCでは横並びにしやすい構造に -->
+                                        <div class="flex flex-col md:flex-row md:items-start gap-1 md:gap-4">
+                                            <span class="font-bold md:font-normal text-gray-800 md:text-gray-700 whitespace-nowrap w-auto md:w-[6em] shrink-0">本社</span>
                                             <div class="flex flex-col flex-grow">
                                                 <span class="number-font">〒340-0053 埼玉県草加市旭町 2-5-37-102</span>
-                                                <div class="flex items-start">
+                                                <div class="flex items-start mt-1">
                                                     <span class="shrink-0">アクセス：</span>
                                                     <span>新田駅より徒歩7分</span>
                                                 </div>
-                                                <span class="number-font">TEL : 048-971-9501</span>
+                                                <span class="number-font mt-1">TEL : 048-971-9501</span>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <!-- 八潮工場情報 (アクセス情報のレイアウトを修正) -->
+                                    <!-- 八潮工場情報 -->
                                     <div class="flex flex-col gap-1">
-                                        <div class="flex items-start">
-                                            <span class="font-normal text-gray-700 whitespace-nowrap w-[4em] md:w-[6em] shrink-0">八潮工場</span>
+                                        <div class="flex flex-col md:flex-row md:items-start gap-1 md:gap-4">
+                                            <span class="font-bold md:font-normal text-gray-800 md:text-gray-700 whitespace-nowrap w-auto md:w-[6em] shrink-0">八潮工場</span>
                                             <div class="flex flex-col flex-grow">
                                                 <span class="number-font">〒340-0808 埼玉県八潮市緑町 5-10-2</span>
-                                                <!-- アクセス情報をFlexboxで整列 -->
-                                                <div class="flex items-start">
+                                                <!-- アクセス情報を整理 -->
+                                                <div class="flex items-start mt-1">
                                                     <span class="shrink-0">アクセス：</span>
                                                     <div class="flex flex-col">
                                                         <span>草加駅より車で10分</span>
                                                         <span>稲荷三丁目バス停より徒歩2分</span>
                                                     </div>
                                                 </div>
-                                                <span class="number-font">TEL : 048-960-0787</span>
+                                                <span class="number-font mt-1">TEL : 048-960-0787</span>
                                             </div>
                                         </div>
                                     </div>
